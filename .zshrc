@@ -87,3 +87,4 @@ HISTFILE=~/.zsh_history
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 export PATH="$PATH:$HOME/.spicetify"
+eval $(fnm env)
