@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Mac specific configuration
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Set a blazingly fast keyboard repeat rate, and make it happen more quickly.
+defaults write NSGlobalDomain InitialKeyRepeat -int 20
+defaults write NSGlobalDomain KeyRepeat -int 1
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Dock: Set icon size to 18
+defaults write com.apple.dock tilesize -int 18
+
+# Restart affected applications if `--no-restart` flag is not present.
+for app in "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
+    killall "${app}" > /dev/null 2>&1
+done

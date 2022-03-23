@@ -1,0 +1,26 @@
+[user]
+	name = Dustin Rouillard
+	email = code@dstn.to
+	signingkey = B38081E5A2282B62802A28A303265F2BBD540257
+
+[core]
+	filemode = false
+	excludesfile = ~/.gitignore_global
+
+[commit]
+	gpgsign = true
+
+[advice]
+	ignoredHook = false
+
+[gpg]
+	program = gpg
+	
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
+[init]
+	defaultBranch = master
