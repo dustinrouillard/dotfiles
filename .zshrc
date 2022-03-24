@@ -44,6 +44,7 @@ alias code="code-insiders"
 alias k="kubectl"
 alias v="nvim"
 alias vim="nvim"
+alias kubefwd="sudo -E kubefwd"
 
 source ~/.secrets
 source ~/.jwt
