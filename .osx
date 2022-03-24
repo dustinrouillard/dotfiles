@@ -33,6 +33,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Dock: Set icon size to 18
 defaults write com.apple.dock tilesize -int 18
 
+# Screensaver: Set screensaver to Drift
+defaults write ~/Library/Preferences/ByHost/com.apple.screensaver moduleDict -dict moduleName Drift path "/System/Library/Screen Savers/Drift.saver" type 0
+
 # Restart affected applications if `--no-restart` flag is not present.
 for app in "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
     killall "${app}" > /dev/null 2>&1
