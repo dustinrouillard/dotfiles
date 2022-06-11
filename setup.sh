@@ -13,4 +13,4 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 # Copy over our theme, hushlogin and our .zsh files
 cp .zsh_theme ~/.oh-my-zsh/themes/dstn.zsh-theme
-cp .zshrc .zsh_funcs .zsh_kube .hushlogin ~
+cp .zshrc .zsh_kube .hushlogin ~
