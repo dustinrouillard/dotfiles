@@ -1,0 +1,29 @@
+alias ka="/usr/local/bin/kubectl attach -i -t"
+alias kg="/usr/local/bin/kubectl get"
+alias kd="/usr/local/bin/kubectl delete"
+
+alias k="kubectl"
+
+kdex() {
+    COMMAND=$(printf '%s' "${@//$1/}")
+    DEPLOYMENT="deployments/${1}"
+    /usr/local/bin/kubectl exec -it $DEPLOYMENT $COMMAND
+}
+
+kde() {
+    DEPLOYMENT="deployments/${1}"
+    /usr/local/bin/kubectl edit $DEPLOYMENT
+}
+
+kdr() {
+    DEPLOYMENT="deployments/${1}"
+    /usr/local/bin/kubectl rollout restart $DEPLOYMENT
+}
+
+kdi() {
+    DEPLOYMENT="deployments/${1}"
+    NAME="${1}"
+    if [[ "$3" != "" ]]; then; NAME=${3}; fi
+    IMAGE="${2}"
+    /usr/local/bin/kubectl set image ${DEPLOYMENT} ${NAME}=${IMAGE}
+}
