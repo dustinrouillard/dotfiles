@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Update apt and install zsh, git, curl
+# Update apt and install zsh, curl
 apt update -y
-apt install zsh git curl -y
+apt install zsh curl -y
 
 # FzF fuzzy reverse search
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
