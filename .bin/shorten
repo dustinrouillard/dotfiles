@@ -1,0 +1,58 @@
+#!/bin/bash
+
+if [[ "$1" = "" ]]; then exit 1; fi
+
+TOKEN=$(jwt dstn.to $PERSONAL_SHORTENER_JWT_SECRET 10)
+
+if [[ "$1" = "del" ]]; then
+  DELETE_CODE=$(curl -X DELETE https://dstn.to/${2} -s -H "Authorization: $TOKEN")
+  echo "Deleted short url (if exists)"
+
+  exit 1
+elif [[ "$1" = "visits" ]]; then
+  if [[ "$2" = "" ]]; then
+    node -e "console.log(JSON.parse('$(http https://dstn.to/links authorization:$(jwt dstn.to ${PERSONAL_SHORTENER_JWT_SECRET} 10) | jq -c)').map(link => \`Code   : \${link.code}\nVisits : \${link.visits.toLocaleString()}\nTarget : \${link.target}\`).join('\n\n'))"
+    exit 0
+  fi
+
+  CODE_INFORMATION=$(curl https://dstn.to/${2}/stats -s -H "Authorization: $TOKEN" | jq -r)
+
+  if [ "$CODE_INFORMATION" = "null" ]; then
+    echo "Unable to url with that shortcode"
+    exit 1
+  fi
+
+  URL_CODE=$(echo $CODE_INFORMATION | jq -r .code)
+  URL_TARGET=$(echo $CODE_INFORMATION | jq -r .target)
+  URL_VISITS=$(echo $CODE_INFORMATION | jq -r .visits)
+
+  echo "Short URL Statistics"
+  echo ""
+  echo "Code   : ${URL_CODE}"
+  echo "Visits : ${URL_VISITS}"
+  echo "Target : ${URL_TARGET}"
+  echo ""
+
+  exit 1
+elif [[ "$1" != http* ]]; then
+  echo "Link starting with http is required"
+  exit 1
+fi
+
+if [ "$2" = "" ]; then
+  URL_CREATE=$(curl -X POST https://dstn.to/create -s -H "Authorization: $TOKEN" -H 'Content-Type: application/json' --data-raw "{\"target\":\"$1\"}")
+else
+  URL_CREATE=$(curl -X POST https://dstn.to/create -s -H "Authorization: $TOKEN" -H 'Content-Type: application/json' --data-raw "{\"target\":\"$1\",\"code\":\"$2\"}")
+fi
+
+URL_CODE=$(echo $URL_CREATE | jq -r .code | cut -d"'" -f1)
+
+if [ "$URL_CODE" = "internal_server_error" ]; then
+  URL_ERROR=$(echo $URL_CREATE | jq -r .error)
+  echo "Failed to shorten url - ${URL_CODE} : ${URL_ERROR}"
+  exit 1
+fi
+
+echo "Shortened URL $1 -> https://dstn.to/$URL_CODE"
+echo -n https://dstn.to/$URL_CODE | xsel
+echo -n https://dstn.to/$URL_CODE | xsel --input --clipboard
