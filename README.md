@@ -9,7 +9,7 @@ I install these dotfiles using my ansible playbooks found [here](https://github.
 
 ## Neofetch
 
-![neofetch](https://dustin.pics/765175ae1d926f37.png)
+![neofetch](https://dustin.pics/623f4dbf8c64cab2.png)
 
 ## OSX file
 
