@@ -42,5 +42,8 @@ case ":$PATH:" in
 esac
 # End pnpm
 
+# Run xbindkeys with polling
+xbindkeys -p
+
 # Setup various paths
 export PATH=$HOME/.bin:/usr/local/bin:$PATH
