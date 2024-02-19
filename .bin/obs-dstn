@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PROFILE=$1 # main / story
+
+NAME="Main"
+WEBSOCKET_PORT="4455"
+
+# Change the name and websocket port for story mode ;)
+if [[ $PROFILE == "story" ]]; then
+    NAME="Story Time"
+    WEBSOCKET_PORT="4456"
+fi
+
+# Replace the websocket port so we don't overlap for companion
+sed -i "s/ServerPort=[0-9]*/ServerPort=${WEBSOCKET_PORT}/" ~/.config/obs-studio/global.ini
+
+# Open OBS with the profile and scene collection and ignore multiples.
+obs --profile "$NAME" --collection "$NAME" -m

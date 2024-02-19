@@ -5,7 +5,6 @@
 
 [core]
 	filemode = false
-	excludesfile = ~/.gitignore_global
 
 [commit]
 	gpgsign = true

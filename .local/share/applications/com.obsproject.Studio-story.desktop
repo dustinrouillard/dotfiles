@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=AudioVideo;Recorder;
+Exec=obs-dstn story
+Icon=com.obsproject.Studio
+StartupNotify=true
+StartupWMClass=obs
+Terminal=false
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
+Name=OBS Studio: Story Mode
+GenericName=Story Recording Software/OBS
+Comment=Free and Open Source Streaming/Recording Software
