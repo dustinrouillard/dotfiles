@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=AudioVideo;Recorder;
-Exec=obs-dstn story
+Exec=/home/${USER}/.bin/obs-dstn story
 Icon=com.obsproject.Studio
 StartupNotify=true
 StartupWMClass=obs
