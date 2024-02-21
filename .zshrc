@@ -46,4 +46,4 @@ esac
 xbindkeys -p
 
 # Setup various paths
-export PATH=$HOME/.bin:/usr/local/bin:$PATH
+export PATH=$HOME/.bin:$HOME/go/bin:$HOME/.console-ninja/.bin:/usr/local/bin:$PATH
