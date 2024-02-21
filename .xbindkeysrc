@@ -1,5 +1,3 @@
-"echo -n | xsel -n -i; pkill xbindkeys; xdotool click 2; xbindkeys -p"
-	b:2 + Release
 "${HOME}/.bin/screenshot"
 	Control+Shift + slash
 "${HOME}/.bin/screenshot w"
