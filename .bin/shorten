@@ -11,7 +11,7 @@ if [[ "$1" = "del" ]]; then
   exit 1
 elif [[ "$1" = "visits" ]]; then
   if [[ "$2" = "" ]]; then
-    node -e "console.log(JSON.parse('$(http https://dstn.to/links authorization:$(jwt dstn.to ${PERSONAL_SHORTENER_JWT_SECRET} 10) | jq -c)').map(link => \`Code   : \${link.code}\nVisits : \${link.visits.toLocaleString()}\nTarget : \${link.target}\`).join('\n\n'))"
+    curl https://dstn.to/links -s -H "Authorization: ${TOKEN}" | jq -r 'map("Code   : \(.code)\nVisits : \(.visits | tostring | gsub("\\B(?=(\\d{3})+(?!\\d))"; ","))\nTarget : \(.target)") | join("\n\n")'
     exit 0
   fi
 
