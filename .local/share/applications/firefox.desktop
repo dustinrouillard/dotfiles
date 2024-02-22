@@ -1,0 +1,28 @@
+[Desktop Action new-private-window]
+Exec=/usr/lib/firefox/firefox --private-window %u
+Name=Open a New Private Window
+
+[Desktop Action profile-manager-window]
+Exec=/usr/lib/firefox/firefox --ProfileManager
+Name=Open the Profile Manager
+
+[Desktop Entry]
+Actions=new-window;new-private-window;profile-manager-window;
+Categories=Network;WebBrowser;
+Comment[en_US]=Browse the World Wide Web
+Comment=Browse the World Wide Web
+Exec=/usr/lib/firefox/firefox --profile ~/.mozilla/firefox/dstn.default
+GenericName[en_US]=Web Browser
+GenericName=Web Browser
+Icon=firefox
+Keywords=Internet;WWW;Browser;Web;Explorer
+MimeType=text/html;application/xml;application/xhtml+xml;application/x-xpinstall;application/vnd.mozilla.xul+xml;application/pdf;application/json;
+Name[en_US]=Firefox
+Name=Firefox
+Path=~
+StartupNotify=false
+StartupWMClass=firefox
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
+X-KDE-Username=
