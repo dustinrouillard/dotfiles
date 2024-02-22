@@ -45,5 +45,10 @@ esac
 # Run xbindkeys with polling
 xbindkeys -p
 
+# start fzf
+[[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -e /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+# end fzf
+
 # Setup various paths
 export PATH=$HOME/.bin:$HOME/go/bin:$HOME/.console-ninja/.bin:/usr/local/bin:$PATH
