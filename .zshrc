@@ -6,6 +6,7 @@ ZSH_THEME="edvardm"
 plugins=(
     git
     sudo
+    zsh-syntax-highlighting
 )
 
 # End oh my zsh
@@ -28,27 +29,7 @@ export PROJECTS="${HOME}/Projects"
 source ~/.secrets
 
 # Source our custom zsh files
-source ~/.zsh_alias
-source ~/.zsh_funcs
-
-# Setup env for fnm
-eval $(fnm env)
-
-# Begin pnpm
-export PNPM_HOME="/home/${USER}/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# End pnpm
-
-# Run xbindkeys with polling
-xbindkeys -p
-
-# start fzf
-[[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-[[ -e /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
-# end fzf
+source ~/.zshrc.d/*.zsh
 
 # Setup various paths
 export PATH=$HOME/.bin:$HOME/go/bin:$HOME/.console-ninja/.bin:/usr/local/bin:$PATH
