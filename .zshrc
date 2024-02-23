@@ -6,6 +6,7 @@ ZSH_THEME="edvardm"
 plugins=(
     git
     sudo
+    fzf
     zsh-syntax-highlighting
 )
 
@@ -30,6 +31,3 @@ source ~/.secrets
 
 # Source our custom zsh files
 source ~/.zshrc.d/*.zsh
-
-# Setup various paths
-export PATH=$HOME/.bin:$HOME/go/bin:$HOME/.console-ninja/.bin:/usr/local/bin:$PATH
