@@ -6,4 +6,4 @@
 
 ## [Mac Dotfiles](https://github.com/dustinrouillard/dotfiles/tree/mac)
 
-![neofetch](https://dustin.pics/765175ae1d926f37.png)
+![neofetch](https://dustin.pics/c878a6610a081c3f.png)
