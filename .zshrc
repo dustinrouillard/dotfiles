@@ -30,4 +30,6 @@ export PROJECTS="${HOME}/Projects"
 source ~/.secrets
 
 # Source our custom zsh files
-source ~/.zshrc.d/*.zsh
+for file in ~/.zshrc.d/*.zsh; do
+    source ${file}
+done
