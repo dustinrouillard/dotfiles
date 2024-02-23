@@ -5,11 +5,11 @@
 [![Follow on twitter](https://img.shields.io/twitter/follow/dustinrouillard.svg?label=Follow)](https://twitter.com/dustinrouillard)
 [![Join Discord](https://discordapp.com/api/guilds/115570032188194822/embed.png)](https://discord.gg/JbHy7c2)
 
-I install these dotfiles using my ansible playbooks found [here](https://github.com/dustinrouillard/playbooks)
+I install these dotfiles using my ansible playbooks found [here](https://github.com/dustinrouillard/playbooks/tree/mac)
 
 ## Neofetch
 
-![neofetch](https://dustin.pics/765175ae1d926f37.png)
+![neofetch](https://dustin.pics/15d573da86a967d7.png)
 
 ## OSX file
 

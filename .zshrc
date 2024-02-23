@@ -37,18 +37,20 @@ export PROJECTS="${HOME}/Projects";
 alias projects="cd $PROJECTS"
 alias gopath="cd $GOPATH/src"
 
-alias kattach="/usr/local/bin/kubectl attach -i -t"
-alias kget="/usr/local/bin/kubectl get"
-alias kdelete="/usr/local/bin/kubectl delete"
+alias kattach="$(which kubectl) attach -i -t"
+alias kget="$(which kubectl) get"
+alias kdelete="$(which kubectl) delete"
 
 alias code="code-insiders"
 alias k="kubectl"
 alias v="nvim"
 alias vim="nvim"
 alias kubefwd="sudo -E kubefwd"
+alias pw="packwiz"
 
 source ~/.secrets
 source ~/.jwt
+source ~/.hopadm
 source ~/.zsh_funcs
 
 preexec () {
@@ -85,8 +87,24 @@ export PATH="/Users/dustin/.node_modules_global/bin:$PATH"
 export PATH="/Users/dustin/.local/bin:$PATH"
 
 HISTFILE=~/.zsh_history
+HISTSIZE=10000000
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 export PATH="$PATH:$HOME/.spicetify"
 eval $(fnm env)
+
+export DOCKER_HOST=10.7.20.5:2375
+
+# pnpm
+export PNPM_HOME="/Users/dustin/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+#. $HOME/.asdf/asdf.sh
+
+#. $HOME/.asdf/completions/asdf.bash
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH=$PATH:/Users/dustin/.kubescape/bin
+
+PATH=~/.console-ninja/.bin:$PATH

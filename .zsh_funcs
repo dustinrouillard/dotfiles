@@ -1,7 +1,7 @@
 random () {
   LENGTH=$1
   if [[ $LENGTH = "" ]]; then; LENGTH=32; fi
-  RANDOM_STRING=$(openssl rand -base64 ${LENGTH})
+  RANDOM_STRING=$(openssl rand -${2:-hex} ${LENGTH})
   echo ${RANDOM_STRING}
 }
 
@@ -64,17 +64,17 @@ shorten() {
   TOKEN=$(jwt dstn.to $PERSONAL_SHORTENER_JWT_SECRET 10)
   
   if [[ "$1" = "del" ]]; then
-    DELETE_CODE=$(http DELETE https://dstn.to/${2} Authorization:$TOKEN)
+    DELETE_CODE=$(curl -s -X DELETE https://dstn.to/${2} -H "Authorization:$TOKEN")
     echo "Deleted short url (if exists)"
 
     return 1
   elif [[ "$1" = "visits" ]]; then
     if [ "$2" = "" ]; then
-      node -e "console.log(JSON.parse('$(http https://dstn.to/links authorization:$(jwt dstn.to ${PERSONAL_SHORTENER_JWT_SECRET} 10) | jq -c)').map(link => \`Code   : \${link.code}\nVisits : \${link.visits.toLocaleString()}\nTarget : \${link.target}\`).join('\n\n'))"
+      node -e "console.log(JSON.parse('$(curl -s https://dstn.to/links -H \'authorization:$(jwt dstn.to ${PERSONAL_SHORTENER_JWT_SECRET} 10)\' | jq -c)').map(link => \`Code   : \${link.code}\nVisits : \${link.visits.toLocaleString()}\nTarget : \${link.target}\`).join('\n\n'))"
       return 0
     fi
     
-    CODE_INFORMATION=$(http https://dstn.to/${2}/stats Authorization:$TOKEN | jq -r)
+    CODE_INFORMATION=$(curl -s https://dstn.to/${2}/stats -H "Authorization:$TOKEN" | jq -r)
 
     if [ "$CODE_INFORMATION" = "null" ]; then
       echo "Unable to url with that shortcode"
@@ -93,15 +93,15 @@ shorten() {
     echo ""
 
     return 1
-  elif [[ "$1" != http* ]]; then
-    echo "Link starting with http is required"
-    return 1
+  #elif [[ "$1" != http* ]]; then
+  #  echo "Link starting with http is required"
+  #  return 1
   fi
 
   if [ "$2" = "" ]; then
-    URL_CREATE=$(http POST https://dstn.to/create Authorization:$TOKEN target=$1)
+    URL_CREATE=$(curl -s -X POST https://dstn.to/create -H "Authorization:$TOKEN" -H 'Content-Type: application/json' --data-raw "{\"target\": \"$1\"}")
   else
-    URL_CREATE=$(http POST https://dstn.to/create Authorization:$TOKEN target=$1 code=$2)
+    URL_CREATE=$(curl -s -X POST https://dstn.to/create -H "Authorization:$TOKEN" -H 'Content-Type: application/json' --data-raw "{\"target\": \"$1\", \"code\": \"$2\"}")
   fi
 
   URL_CODE=$(echo $URL_CREATE | jq -r .code)
@@ -117,35 +117,33 @@ shorten() {
   return 0
 }
 
+lanyard() {
+  if [ "$1" = "" ]; then; return 1; fi
+
+  if [ "$1" = "lock" ]; then
+	  http PATCH https://canary.discord.com/api/v9/guilds/819285379982557265 authorization:"Bot ${LANYARD_BOT_TOKEN}" features:='["NEWS","AUTO_MODERATION","MEMBER_PROFILES","ANIMATED_BANNER","COMMUNITY","THREE_DAY_THREAD_ARCHIVE","ROLE_ICONS","SEVEN_DAY_THREAD_ARCHIVE","THREADS_ENABLED","VANITY_URL","INVITE_SPLASH","PRIVATE_THREADS","ANIMATED_ICON","BANNER","ENABLED_DISCOVERABLE_BEFORE","INVITES_DISABLED"]' -b | jq .features
+  elif [ "$1" = "unlock" ]; then
+	  http PATCH https://canary.discord.com/api/v9/guilds/819285379982557265 authorization:"Bot ${LANYARD_BOT_TOKEN}" features:='["NEWS","AUTO_MODERATION","MEMBER_PROFILES","ANIMATED_BANNER","COMMUNITY","THREE_DAY_THREAD_ARCHIVE","ROLE_ICONS","SEVEN_DAY_THREAD_ARCHIVE","THREADS_ENABLED","VANITY_URL","INVITE_SPLASH","PRIVATE_THREADS","ANIMATED_ICON","BANNER","ENABLED_DISCOVERABLE_BEFORE"]' -b | jq .features
+  fi
+}
+
 mcrcon() {
   if [ "$1" = "" ]; then; return 1; fi
 
-  if [ "$1" = "sb" ]; then
-    POD_NAME=$(kubectl get pods --selector=app=stoneblock-2 -n dustin-games -o jsonpath='{.items[0].metadata.name}')
+  if [ "$1" = "atmk" ]; then
+    POD_NAME=$(kubectl get pods --selector=app=atm8 -n games -o jsonpath='{.items[0].metadata.name}')
     COMMAND=${@:2}
 
-    kubectl exec ${POD_NAME} -n dustin-games -- rcon-cli --password minecraft "${COMMAND}"
-  fi
-
-  if [ "$1" = "cnc" ]; then
-    POD_NAME=$(kubectl get pods --selector=app=caves-n-cliffs -n dustin-games -o jsonpath='{.items[0].metadata.name}')
+    kubectl exec ${POD_NAME} -n games -- rcon-cli --password ${MCRCON_TOKEN} "${COMMAND}"
+  elif [ "$1" = "atm" ]; then
     COMMAND=${@:2}
-
-    kubectl exec ${POD_NAME} -n dustin-games -- rcon-cli --password ${MCRCON_TOKEN} "${COMMAND}"
-  fi
-
-  if [ "$1" = "gas" ]; then
-    POD_NAME=$(kubectl get pods --selector=app=gascraft -n dustin-games -o jsonpath='{.items[0].metadata.name}')
+    #DOCKER_HOST=10.7.20.1:2375
+    export MCRCON_TOKEN=968e30e90e55e95b68583503
+    CONTAINER_HOST=tcp://10.7.10.4:9009 podman exec -e MCRCON_TOKEN=${MCRCON_TOKEN} -e COMMAND=${COMMAND} atm9-server rcon-cli --password ${MCRCON_TOKEN} "${COMMAND}"
+  elif [ "$1" = "create" ]; then
     COMMAND=${@:2}
-
-    kubectl exec ${POD_NAME} -n dustin-games -- rcon-cli --password ${MCRCON_TOKEN} "${COMMAND}"
-  fi
-
-  if [ "$1" = "gc" ]; then
-    POD_NAME=$(kubectl get pods --selector=app=gascraft-dev -n dustin-games -o jsonpath='{.items[0].metadata.name}')
-    COMMAND=${@:2}
-
-    kubectl exec ${POD_NAME} -n dustin-games -- rcon-cli --password ${MCRCON_TOKEN} "${COMMAND}"
+    export MCRCON_TOKEN=65334bd017acc04fd2534e00
+    CONTAINER_HOST=tcp://10.7.20.5:2375 docker exec -e MCRCON_TOKEN=${MCRCON_TOKEN} -e COMMAND=${COMMAND} create_n_puff rcon-cli --password ${MCRCON_TOKEN} "${COMMAND}"
   fi
 }
 
@@ -173,6 +171,10 @@ kimage() {
   /usr/local/bin/kubectl set image ${DEPLOYMENT} ${NAME}=${IMAGE}
 }
 
+kyml() {
+ k get ${@} -o=json | jq 'del(.metadata.resourceVersion,.metadata.uid,.metadata.selfLink,.metadata.creationTimestamp,.metadata.annotations,.metadata.generation,.metadata.ownerReferences)' | yq eval - -P
+}
+
 ghcrbuild() {
   NAME="${1}"
   DOCKERFILE="${2}"
@@ -198,7 +200,32 @@ purgedns () {
   sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
 }
 
+v6() {
+	INFO=$(networksetup -getinfo "USB 10/100/1000 LAN" | grep "IPv6: Automatic")
+	if [ $? -eq 0 ]; then
+		echo "V6 Disabled"
+		networksetup -setv6off "USB 10/100/1000 LAN"
+	else
+		echo "V6 Enabled"
+		networksetup -setv6automatic "USB 10/100/1000 LAN"
+	fi
+}
+
 qr () {
 	if [[ "$@" == "" ]]; then; echo "Missing URL"; return 1; fi
 	curl -d "$@" https://qrcode.show
+}
+
+sourceenv () {
+	set -o allexport # enable all variable definitions to be exported
+	source <(sed -e "s/\r//" -e '/^#/d;/^\s*$/d' -e "s/'/'\\\''/g" -e "s/=\(.*\)/=\"\1\"/g" ".env")
+	set +o allexport
+}
+
+vibing() {
+	curl -X PATCH https://gw.dstn.to/status --data-raw "{\"message\": \"$1\", \"type\": \"vibing\"}" -H "Authorization:${GATEWAY_AUTH_TOKEN}"
+}
+
+sleeping() {
+	http PATCH https://gw.dstn.to/status message="$1" type="sleeping" Authorization:${GATEWAY_AUTH_TOKEN}
 }
