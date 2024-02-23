@@ -1,4 +1,4 @@
-# Dustin's Mac Dotfiles
+# Dustin's Arch Dotfiles
 
 ## Dotfiles
 
