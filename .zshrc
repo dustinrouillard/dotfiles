@@ -33,3 +33,5 @@ source ~/.secrets
 for file in ~/.zshrc.d/*.zsh; do
     source ${file}
 done
+
+PATH=~/.console-ninja/.bin:$PATH

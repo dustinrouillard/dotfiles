@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Generating private key..."
+
+PRIVATE_KEY=$(wg genkey)
+
+echo "Generating PSK..."
+
+PSK=$(wg genpsk)
+
+echo "Generating Public Key from Private Key"
+
+PUBLIC_KEY=$(echo ${PRIVATE_KEY} | wg pubkey)
+
+echo "Done."
+echo "Public Key: ${PUBLIC_KEY}"
+echo "Private Key: ${PRIVATE_KEY}"
+echo "PSK: ${PSK}"
+echo ""
