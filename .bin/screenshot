@@ -4,7 +4,6 @@ source ~/.secrets
 
 MAIN_FOLDER="$HOME/Pictures/Screenshots"
 
-FULL_DAY=$(date +'%A')
 FULL_MONTH=$(date +'%B')
 FULL_YEAR=$(date +'%Y')
 
@@ -17,15 +16,15 @@ MONTH=$(date +'%m')
 YEAR=$(date +'%y')
 
 FILE_NAME="${HOUR}-${MINUTE}-${SECOND}-${MONTH}-${DAY}-${YEAR}"
-FOLDER_NAME="$FULL_YEAR/$FULL_MONTH/$FULL_DAY"
+FOLDER_NAME="$FULL_YEAR/$FULL_MONTH"
 
 # Make folder(s)
 mkdir -p ${MAIN_FOLDER}/${FOLDER_NAME}
 
 # Take Screenshot
-FLAGS="-r"
-if [[ "$1" != "" ]]; then FLAGS="-ws"; else FLAGS="-rs"; fi
-xfce4-screenshooter ${FLAGS} ${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png
+FLAGS="-rb"
+if [[ "$1" != "" ]]; then FLAGS="-ab"; else FLAGS="-rb"; fi
+spectacle ${FLAGS} -no ${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png
 
 if [ ! -e ${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png ]; then exit 0; fi
 
@@ -39,8 +38,7 @@ UPLOAD=`curl -X POST -s ${PERSONAL_API_HOST}/v1/images/upload -H "authorization:
 FILE_URL=$(echo $UPLOAD | jq -r .data.url)
 
 # Copy URL to clipboard
-echo -n $FILE_URL | xsel --input --clipboard
-echo -n $FILE_URL | xsel
+echo -n $FILE_URL | wl-copy
 
 # Send Upload Notification
 /usr/bin/notify-send -a DCS -t 1500 -r ${NOTIFICATION_ID} "Uploaded" "${FILE_URL}"

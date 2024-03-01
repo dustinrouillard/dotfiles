@@ -8,6 +8,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # End pnpm
-
-# Run xbindkeys with polling
-xbindkeys -p
