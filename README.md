@@ -2,7 +2,7 @@
 
 ## [Arch Dotfiles](https://github.com/dustinrouillard/dotfiles/tree/arch)
 
-![neofetch](https://dustin.pics/c161e6989790dd95.png)
+![neofetch](https://dustin.pics/610738e95dfeb8b0.png)
 
 ## [Mac Dotfiles](https://github.com/dustinrouillard/dotfiles/tree/mac)
 
