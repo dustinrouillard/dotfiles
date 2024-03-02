@@ -1,0 +1,23 @@
+[
+    {
+        "iconPath": ":github",
+        "id": "de0e219c",
+        "name": "GitHub",
+        "trigger": "gh",
+        "url": "https://github.com/search?utf8=✓&q=%s"
+    },
+    {
+        "iconPath": ":google",
+        "id": "dc572c75",
+        "name": "Google",
+        "trigger": "gg",
+        "url": "https://www.google.com/search?q=%s"
+    },
+    {
+        "iconPath": ":youtube",
+        "id": "1233404b",
+        "name": "Youtube",
+        "trigger": "yt",
+        "url": "https://www.youtube.com/results?search_query=%s"
+    }
+]
