@@ -1,0 +1,21 @@
+[Desktop Entry]
+GenericName=Screenshot Utility
+Name=Screenshot Tool
+Comment=Dustin's Screenshotter Tool
+Categories=Qt;KDE;Utility;
+Keywords=snapshot;capture;print;screenshot;snipping;snipping tool;snip;
+Exec=/home/dustin/.bin/screenshot
+Icon=spectacle
+Type=Application
+StartupNotify=false
+Actions=ActiveWin;
+DBusActivatable=true
+X-DBUS-StartupType=Unique
+X-DBUS-ServiceName=to.dstn.Screenshot
+X-KDE-Shortcuts=Print,Ctrl+?
+X-KDE-Wayland-Interfaces=org_kde_plasma_window_management,zkde_screencast_unstable_v1
+
+[Desktop Action ActiveWin]
+Name=Active Window
+Exec=/home/dustin/.bin/screenshot -w
+X-KDE-Shortcuts=Ctrl+Print,Ctrl+"

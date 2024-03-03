@@ -1,0 +1,25 @@
+[Desktop Entry]
+Categories=Utility;
+Comment=A desktop agnostic launcher
+Exec=albert --platform xcb
+GenericName=Launcher
+Icon=albert
+MimeType=
+Name[en_US]=Albert
+Name=Albert
+Path=
+StartupNotify=false
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+Actions=Show;
+X-GNOME-Autostart-Delay=3
+X-KDE-SubstituteUID=false
+X-KDE-Shortcuts=
+X-KDE-Username=
+
+[Desktop Action Show]
+Name=Show
+Exec=albert show
+X-KDE-Shortcuts=Meta+Space,Ctrl+Space
