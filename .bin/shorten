@@ -54,5 +54,9 @@ if [ "$URL_CODE" = "internal_server_error" ]; then
 fi
 
 echo "Shortened URL $1 -> https://dstn.to/$URL_CODE"
-echo -n https://dstn.to/$URL_CODE | xsel
-echo -n https://dstn.to/$URL_CODE | xsel --input --clipboard
+
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+	echo -n https://dstn.to/${URL_CODE} | wl-copy
+else
+	echo -n https://dstn.to/$URL_CODE | xsel -i -b
+fi

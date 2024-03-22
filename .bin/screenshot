@@ -34,11 +34,24 @@ NOTIFICATION_ID=$(/usr/bin/notify-send -a DCS -t 0 -p "Uploading" "Screenshot is
 # Upload file to custom api
 UPLOAD=`curl -X POST -s ${PERSONAL_API_HOST}/v1/images/upload -H "authorization:${PERSONAL_API_INTERNAL_SECRET}" -F file=@${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png`
 
+# Check for an error and set the variables if so
+ERROR_CODE=$(echo $UPLOAD | jq -r .code)
+ERROR_MSG=$(echo $UPLOAD | jq -r .message)
+HAS_ERROR=$([[ $ERROR_CODE != "null" && $ERROR_MSG != "null" ]] && echo "true" || echo "false")
+
+if [[ $HAS_ERROR == "true" ]]; then
+	/usr/bin/notify-send -a DCS -t 2000 -r ${NOTIFICATION_ID} "Error Uploading" "${ERROR_MSG}"; exit 0
+fi
+
 # Get file url
 FILE_URL=$(echo $UPLOAD | jq -r .data.url)
 
 # Copy URL to clipboard
-echo -n $FILE_URL | wl-copy
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+	echo -n $FILE_URL | wl-copy
+else
+	echo -n $FILE_URL | xsel -i -b
+fi
 
 # Send Upload Notification
 /usr/bin/notify-send -a DCS -t 1500 -r ${NOTIFICATION_ID} "Uploaded" "${FILE_URL}"
