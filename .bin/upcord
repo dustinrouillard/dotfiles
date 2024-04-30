@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Fetching latest PKGBUILD for discord"
+
+mkdir -p /tmp/discord-build
+curl -D /tmp/discord-build/headers -s https://dcv.dstn.to/canary/PKGBUILD > /tmp/discord-build/PKGBUILD
+
+sed -i 's/\r$//' /tmp/discord-build/headers
+DISCORD_VERSION=$(awk '/^x-version:/ {print $2}' /tmp/discord-build/headers)
+
+echo "Updating to Discord $DISCORD_VERSION using PKGBUILD"
+(cd /tmp/discord-build && makepkg -si)
+
+rm -rf /tmp/discord-build
