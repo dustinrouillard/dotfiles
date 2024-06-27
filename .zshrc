@@ -50,7 +50,6 @@ alias pw="packwiz"
 
 source ~/.secrets
 source ~/.jwt
-source ~/.hopadm
 source ~/.zsh_funcs
 
 preexec () {
