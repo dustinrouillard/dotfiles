@@ -1,0 +1,3 @@
+#!/bin/bash
+
+$(which ansible-playbook) ~/Projects/Personal/playbooks/config.yml -t homebrew
