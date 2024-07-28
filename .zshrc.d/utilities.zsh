@@ -73,6 +73,17 @@ sleeping() {
 	http PATCH https://gw.dstn.to/status message="$1" type="sleeping" Authorization:${GATEWAY_AUTH_TOKEN}
 }
 
+pbeditb64() {
+  local _t=$(mktemp)
+  chmod 600 "$_t"
+
+  pbpaste | base64 --decode > "$_t"
+  ${EDITOR:-vi} "$_t"
+  base64 < "$_t" | pbcopy
+
+  rm -f "$_t"
+}
+
 pbedit() {
   local _t=$(mktemp)
   chmod 600 "$_t"
@@ -152,6 +163,6 @@ upload() {
   ~/Projects/Personal/mac-screenshot/upload-api.sh ${FILE}
 }
 
-screenshot() {	
-  ~/Projects/Personal/mac-screenshot/screenshot-api.sh
+screenshot() {
+  ~/Projects/Personal/mac-screenshot/screenshot-api.sh $1
 }
