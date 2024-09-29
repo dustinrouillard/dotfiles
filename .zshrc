@@ -9,6 +9,7 @@ ZSH_THEME="edvardm"
 
 plugins=(
     git
+    fzf
     sudo
 )
 

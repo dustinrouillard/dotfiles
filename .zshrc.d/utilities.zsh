@@ -39,6 +39,13 @@ ghcrbuild() {
   docker buildx build --platform ${ARCH} . -f ${DOCKERFILE} -t ${IMAGE} --push
 }
 
+mcrcon () {
+  if [[ "$1" == "atm" ]]; then
+	  PASSWORD=$(op item get "Games:ATM9" --vault "Ganja K8s" --fields RCON_PASSWORD --reveal)
+	  kubectl exec sts/atm9 --context "dstn games" -- rcon-cli --password ${PASSWORD} ${@:2}
+  fi
+}
+
 purgedns () {
   sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
 }
