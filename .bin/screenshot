@@ -32,7 +32,7 @@ if [ ! -e ${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png ]; then exit 0; fi
 NOTIFICATION_ID=$(/usr/bin/notify-send -a DCS -t 0 -p "Uploading" "Screenshot is being uploaded")
 
 # Upload file to custom api
-UPLOAD=`curl -X POST -s ${PERSONAL_API_HOST}/v1/images/upload -H "authorization:${PERSONAL_API_INTERNAL_SECRET}" -F file=@${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png`
+UPLOAD=`curl -X POST -s ${PERSONAL_API_HOST}/v2/uploads/images -H "authorization:${PERSONAL_API_INTERNAL_SECRET}" -F file=@${MAIN_FOLDER}/${FOLDER_NAME}/${FILE_NAME}.png`
 
 # Check for an error and set the variables if so
 ERROR_CODE=$(echo $UPLOAD | jq -r .code)

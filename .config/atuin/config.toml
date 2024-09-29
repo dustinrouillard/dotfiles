@@ -1,0 +1,8 @@
+sync_address = "https://atuin.dstn.to"
+
+sync_frequency = "0"
+search_mode = "fuzzy"
+enter_accept = true
+
+[sync]
+records = true

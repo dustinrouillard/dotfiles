@@ -24,7 +24,7 @@ if [[ $PROFILE == "story" ]]; then
 fi
 
 # Replace the websocket port and dock info
-kwriteconfig5 --file ~/.config/obs-studio/global.ini --group OBSWebSocket --key ServerPort ${WEBSOCKET_PORT}
+#kwriteconfig5 --file ~/.config/obs-studio/global.ini --group OBSWebSocket --key ServerPort ${WEBSOCKET_PORT}
 kwriteconfig5 --file ~/.config/obs-studio/global.ini --group BasicWindow --key DockState ${DOCKS}
 kwriteconfig5 --file ~/.config/obs-studio/global.ini --group BasicWindow --key geometry ${GEOMETRY}
 kwriteconfig5 --file ~/.config/obs-studio/global.ini --group BasicWindow --key VerticalVolControl ${VERTICAL_VOLUME}

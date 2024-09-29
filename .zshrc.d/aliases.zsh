@@ -10,3 +10,5 @@ alias k="kubectl"
 alias v="nvim"
 alias vim="nvim"
 alias kubefwd="sudo -E kubefwd"
+
+alias loadenv="set -o allexport; source .env; set +o allexport"

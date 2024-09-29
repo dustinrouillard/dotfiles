@@ -1,5 +1,6 @@
 [
     {
+        "fallback": true,
         "iconPath": ":github",
         "id": "de0e219c",
         "name": "GitHub",
@@ -7,6 +8,7 @@
         "url": "https://github.com/search?utf8=✓&q=%s"
     },
     {
+        "fallback": true,
         "iconPath": ":google",
         "id": "dc572c75",
         "name": "Google",
@@ -14,6 +16,7 @@
         "url": "https://www.google.com/search?q=%s"
     },
     {
+        "fallback": true,
         "iconPath": ":youtube",
         "id": "1233404b",
         "name": "Youtube",
