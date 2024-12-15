@@ -1,0 +1,16 @@
+auto-update = "download"
+theme = dark:UltraDark,light:CLRS
+
+keybind = "global:alt+ctrl+enter=toggle_quick_terminal"
+keybind = "global:alt+enter=new_window"
+
+quick-terminal-position = bottom
+
+macos-option-as-alt = true
+macos-titlebar-style = tabs
+macos-non-native-fullscreen = false
+macos-titlebar-proxy-icon = "hidden"
+
+window-theme = ghostty
+window-height = 35
+window-width = 130
