@@ -1,6 +1,9 @@
 # Setup env for fnm
 eval $(fnm env)
 
+# Setup for zoxide
+eval "$(zoxide init zsh)"
+
 # Begin pnpm
 export PNPM_HOME="/home/${USER}/.local/share/pnpm"
 case ":$PATH:" in

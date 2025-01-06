@@ -1,10 +1,12 @@
 auto-update = "download"
+working-directory = home
+quick-terminal-position = bottom
+
 theme = dark:UltraDark,light:CLRS
+font-family = Intel One Mono
 
 keybind = "global:alt+ctrl+enter=toggle_quick_terminal"
 keybind = "global:alt+enter=new_window"
-
-quick-terminal-position = bottom
 
 macos-option-as-alt = true
 macos-titlebar-style = tabs
@@ -12,5 +14,6 @@ macos-non-native-fullscreen = false
 macos-titlebar-proxy-icon = "hidden"
 
 window-theme = ghostty
-window-height = 35
-window-width = 130
+window-height = 40
+window-width = 160
+window-inherit-working-directory = false
