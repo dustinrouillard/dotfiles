@@ -2,6 +2,7 @@ auto-update = "download"
 working-directory = home
 quick-terminal-position = bottom
 
+link-url = false
 theme = dark:UltraDark,light:CLRS
 font-family = Intel One Mono
 
