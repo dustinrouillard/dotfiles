@@ -3,7 +3,7 @@ working-directory = home
 quick-terminal-position = bottom
 
 link-url = false
-theme = dark:UltraDark,light:CLRS
+theme = dark:UltraDark,light:GitHub-Light-High-Contrast
 font-family = Intel One Mono
 
 keybind = "global:alt+ctrl+enter=toggle_quick_terminal"
