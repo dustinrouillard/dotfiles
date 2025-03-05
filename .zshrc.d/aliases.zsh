@@ -11,6 +11,7 @@ alias code="code-insiders"
 alias k="kubectl"
 alias v="nvim"
 alias vim="nvim"
+alias zed="zed-preview"
 alias kubefwd="sudo -E kubefwd"
 alias cd="z"
 

@@ -23,8 +23,10 @@ export LANG=en_US.UTF-8
 
 export GPG_TTY=$(tty) 
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000000
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 
 export PROJECTS="${HOME}/Projects"
 
