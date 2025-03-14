@@ -1,4 +1,4 @@
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:$PATH"
 
 autoload -Uz compinit
 compinit
@@ -39,3 +39,6 @@ for file in ~/.zshrc.d/*.zsh; do
 done
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+# bun completions
+[ -s "/Users/dustin/.bun/_bun" ] && source "/Users/dustin/.bun/_bun"
