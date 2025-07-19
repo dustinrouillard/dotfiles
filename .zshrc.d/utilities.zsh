@@ -29,6 +29,12 @@ kimage() {
   $(which kubectl) set image ${DEPLOYMENT} ${NAME}=${IMAGE}
 }
 
+loadenv () {
+  set -o allexport
+  source "${1:-.env}"
+  set +o allexport
+}
+
 zed() {
   DIR="$1"
   if [[ $DIR == "" ]]; then
