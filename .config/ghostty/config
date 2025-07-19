@@ -4,7 +4,11 @@ quick-terminal-position = bottom
 
 link-url = false
 theme = dark:UltraDark,light:GitHub-Light-High-Contrast
-font-family = Intel One Mono
+
+font-family = "Operator Mono Lig Book"
+font-family-bold = "Operator Mono Book"
+font-family-italic = "Operator Mono Lig Book Italic"
+font-family-bold-italic = "Operator Mono Lig Book Italic"
 
 keybind = "global:alt+ctrl+enter=toggle_quick_terminal"
 keybind = "global:alt+enter=new_window"

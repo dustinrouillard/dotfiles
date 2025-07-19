@@ -1,12 +1,11 @@
 #!/bin/bash
 
-if [[ "$1" != "desk" ]] && [[ $1 != "docked" ]]; then
+if [[ "$1" != "left" ]] && [[ $1 != "right" ]]; then
 	exit 1
 fi
 
-
-if [[ "$1" == "desk" ]]; then
-	displayplacer "id:37D8832A-2D66-02CA-B9F7-8F30A301B230+85BE26FD-F4BD-44EE-8530-20FADDD6182E res:1800x1169 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" "id:A5F3819B-37FA-48A6-8BDC-6649CFC81374 res:2560x1440 hz:144 color_depth:8 enabled:true scaling:off origin:(-1800,271) degree:0"	
+if [[ "$1" == "left" ]]; then
+    displayplacer "id:A2D6CA93-097E-4AE6-B3AE-BB1519D0C969 res:2560x1440 hz:144 color_depth:8 enabled:true scaling:off origin:(0,0) degree:0" "id:0BB24864-5994-4AA8-BD59-DD050E3EF93C+18CFCBCE-C052-442D-907E-5E0C6F5E59D3 res:2560x1440 hz:120 color_depth:8 enabled:true scaling:off origin:(-2560,197) degree:0"
 else
-	displayplacer "id:A5F3819B-37FA-48A6-8BDC-6649CFC81374+85BE26FD-F4BD-44EE-8530-20FADDD6182E res:2560x1440 hz:144 color_depth:8 enabled:true scaling:off origin:(0,0) degree:0" "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1800x1169 hz:120 color_depth:8 enabled:true scaling:on origin:(-2800,271) degree:0"
+    displayplacer "id:A2D6CA93-097E-4AE6-B3AE-BB1519D0C969+18CFCBCE-C052-442D-907E-5E0C6F5E59D3 res:2560x1440 hz:144 color_depth:8 enabled:true scaling:off origin:(0,0) degree:0" "id:0BB24864-5994-4AA8-BD59-DD050E3EF93C res:2560x1440 hz:120 color_depth:8 enabled:true scaling:off origin:(-2560,0) degree:0"
 fi

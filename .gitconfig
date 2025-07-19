@@ -30,6 +30,3 @@
 	
 [push]
 	autoSetupRemote = true
-
-[url "git@github.com:hopinc"]
-	insteadOf = https://github.com/hopinc

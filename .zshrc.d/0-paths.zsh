@@ -7,3 +7,5 @@ export PATH=$HOME/.node_modules_global/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 export PATH=~/.console-ninja/.bin:$PATH
+
+export SYSTEM_MODEL=$(system_profiler SPHardwareDataType | awk '/Model Identifier/ {print $3}')

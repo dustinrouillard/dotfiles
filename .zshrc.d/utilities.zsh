@@ -29,6 +29,17 @@ kimage() {
   $(which kubectl) set image ${DEPLOYMENT} ${NAME}=${IMAGE}
 }
 
+zed() {
+  DIR="$1"
+  if [[ $DIR == "" ]]; then
+    DIR="."
+  elif [[ $DIR == "/" ]]; then
+    DIR="."
+  fi
+
+  $(which zed-preview) $DIR
+}
+
 ghcrbuild() {
   NAME="${1}"
   DOCKERFILE="${2}"
