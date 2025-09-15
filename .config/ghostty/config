@@ -1,9 +1,9 @@
 auto-update = "download"
 working-directory = home
-quick-terminal-position = bottom
+quick-terminal-position = top
 
 link-url = false
-theme = dark:UltraDark,light:GitHub-Light-High-Contrast
+theme = dark:UltraDark,light:"GitHub Light High Contrast"
 
 font-family = "Operator Mono Lig Book"
 font-family-bold = "Operator Mono Book"
