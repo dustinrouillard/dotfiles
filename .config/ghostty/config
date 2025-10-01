@@ -1,6 +1,7 @@
 auto-update = "download"
 working-directory = home
 quick-terminal-position = top
+initial-window = false
 
 link-url = false
 theme = dark:"Ultra Dark",light:"GitHub Light High Contrast"
