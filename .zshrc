@@ -24,6 +24,7 @@ export LANG=en_US.UTF-8
 export GPG_TTY=$(tty) 
 
 export HISTFILE=~/.zsh_history
+export SAVEHIST=999999999
 export HISTSIZE=999999999
 setopt SHARE_HISTORY
 export SAVEHIST=$HISTSIZE
@@ -44,3 +45,4 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # bun completions
 [ -s "/Users/dustin/.bun/_bun" ] && source "/Users/dustin/.bun/_bun"
+
