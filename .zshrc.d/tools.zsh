@@ -5,7 +5,7 @@ eval $(fnm env)
 eval "$(zoxide init zsh)"
 
 # Begin pnpm
-export PNPM_HOME="/home/${USER}/.local/share/pnpm"
+export PNPM_HOME="/Users/${USER}/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
