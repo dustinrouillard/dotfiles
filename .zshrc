@@ -4,6 +4,9 @@ autoload -Uz compinit
 compinit
 
 export ZSH="$HOME/.oh-my-zsh"
+# ts mad fking annoying
+DISABLE_AUTO_UPDATE="true"
+DISABLE_UPDATE_PROMPT="true"
 
 ZSH_THEME="edvardm"
 
@@ -46,3 +49,7 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 # bun completions
 [ -s "/Users/dustin/.bun/_bun" ] && source "/Users/dustin/.bun/_bun"
 
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
